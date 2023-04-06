@@ -1,0 +1,89 @@
+@startuml
+
+class mainEscola{
+    + main(args: String)
+}
+abstract class Pessoa{
+    - nome: String
+    - nif: int
+    - {static} NOME_POR_OMISSAO: String {readOnly}
+    - {static} NIF_POR_OMISSAO: int {readOnly}
+    + Pessoa(nome: String, nif: int)
+    + Pessoa()
+    + getNome(): String
+    + getNif(): int
+    + setNome(nome: String): void
+    + setNif(int: nif): void
+    + toString(): String
+}
+
+abstract class Professor extends Pessoa{
+    - {static} salarioBase: double
+    + Professor(nome: String, nif: int)
+    + Professor()
+    + getSalarioBase(): double
+    + setSalarioBase(double: salarioBase): void
+    + toString(): String
+}
+interface Pagamento{
+    + {abstract}calcularPagamento(): double
+}
+abstract class Aluno extends Pessoa{
+    - numMecanografico: int
+    - {static}NUM_MECANOGRAFICO_POR_OMISSAO: int {readOnly}
+    + Aluno(nome: String, nif: int, numMecanografico: int)
+    + Aluno()
+    + getNumMecanografico(): int
+    + setNumMecanografico(numMecanografico: int): void
+    + toString(): String
+}
+
+class AlunoBolseiro extends Pessoa implements Pagamento{
+    - bolsa: double
+    - {static} BOLSA_POR_OMISSAO: double {readOnly}
+    + AlunoBolseiro(nome: String), nif: int, salarioBase: int)
+    + AlunoBolseiro()
+    + getBolsa(): double
+    + setBolsa(bolsa: double): void
+    + toString: String
+    + calcularPagamento(): double
+}
+class AlunoNaoBolseiro extends Pessoa implements Pagamento{
+    + AlunoNaoBolseiro(nome: String, nif: int, numMecanografico: int)
+    + AlunoNaoBolseiro()
+    + toString(): String
+    + calcularPagamento(): double
+}
+
+class Assistente extends Professor implements Pagamento{
+    - {static} majoracao: double
+    + Assistente(nome: String, nif: int)
+    + Assistente()
+    + getMajoracao(): double
+    + setMajoracao(majoracao: double): void
+    + toString(): String
+    + calcularPagamento(): double
+}
+
+class Adjunto extends Professor implements Pagamento{
+    - {static} majoracao: double
+    + Adjunto(nome: String, nif: int)
+    + Adjunto()
+    + getMajoracao(): double
+    + setMajoracao(majoracao: double): void
+    + toString(): String
+    + calcularPagamento(): double
+}
+
+class Coordenador extends Professor implements Pagamento{
+    - {static} majoracao: double
+    + Coordenador(nome: String, nif: int)
+    + Coordenador()
+    + getMajoracao(): double
+    + setMajoracao(majoracao: double): void
+    + toString(): String
+    + calcularPagamento(): double
+}
+
+
+@enduml

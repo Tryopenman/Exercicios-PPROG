@@ -1,0 +1,81 @@
+@startuml
+
+class main{
+    + main(args : String) : void
+}
+
+abstract class Contador {
+    - id: String
+    - cliente: String
+    - consumo: int
+    - {static} CLIENTE_POR_OMISSAO: String {readOnly}
+    - {static} CONSUMO_POR_OMISSAO : String {readOnly}
+    + Contadores()
+    + Contadores(id: String, cliente: String, consumo: int)
+    + setId(id: String) : void
+    + setCliente(cliente: String): void
+    + setConusmo(int consumo): void
+    + getId(): String
+    + getCliente(): String
+    + getConsumo(): int
+    + toString(): String
+    + {abstract}calcularCustoConsumo(): double
+}
+
+class ContadorGas extends Contador{
+    - {static} contarContadoresGas: int
+    - {static} PREF_CONTADOR_GAS: String {readOnly}
+    - {static} custoUnitario: double
+    + ContadorGas(id: String, cliente: String, consumo: int)
+    + ContadorGas()
+    + getCustoUnitario(): double
+    + getContarContadorGas(): int
+    + toString(): String
+    + calcularCustoConsumo(): double
+}
+
+abstract class ContadorEletrecididade extends Contador{
+    - {static} PREF_CONTADOR_ELETRICIDADED: String {readOnly}
+    - {static} contarContadorEletrecidade: int
+    + ContadorEletrecididade(id: String, cliente: String, consumo : int)
+    + ContadorEletrecididade()
+    + getContarContadorEletrecidade(): int
+    + toString: String
+    + {abstract} calcularCustoConsumo(): double
+}
+
+class ContadorEletrecididadeTarifarioSimples extends ContadorEletrecididade{
+    - potenciaContratada: double
+    - {static} precoKWH1: double
+    - {static} precoKWH2: double
+    - {static} potenciaContratadaLim: double
+    + ContadorEletrecididadeTarifarioSimples()
+    + ContadorEletrecididadeTarifarioSimples(id: String, cliente: String, consumo: double, potenciaContratada: double)
+    + getPotenciaContratada(): double
+    + getPotenciaContratadaLim(): double
+    + getPrecoKWH1(): double
+    + getPrecoKWH2(): double
+    + setPotenciaContratada(potenciaContratada: double): void
+    + setPotenciaContratada(potenciaContratadaLim: double): void
+    + setPrecoKWH1(precoKWH1: double): double
+    + setPrecoKWH2(precoKWH2: double): double
+    + toString: String
+    + calcularCustoConsumo(): double
+}
+
+class ContadorEletrecididadeBiHorario extends ContadorEletrecididade{
+    - consumo2: double
+    - {static} tarifarioHorasVazio: double
+    - {static} tarifarioHorasForaVazio: double
+    + ContadorEletrecididadeBiHorario(id: String,cliente: String, consumo: double, consumo2: double )
+    + ContadorEletrecididadeBiHorario()
+    + getTarifarioHorasVazio(): double
+    + getTarifarioHorasForaVazio(): double
+    + setTarifarioHorasVazio(tarifarioHorasVaazio: double): void
+    + setTarifarioHorasForaVazio: void
+    + toString: String
+    + calcularCustoConsumo(): double
+}
+
+
+@enduml
