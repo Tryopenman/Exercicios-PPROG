@@ -1,0 +1,33 @@
+@startuml
+
+class Empregado{
+    - String primeiroNome
+    - String ultimoNome
+    - Data dataContrato
+    - Tempo horaEntrada
+    - Tempo horaSaida
+    + Empregado(String: primeiroNome,String: ultimoNome,\nData: dataContrato,Tempo: horaEntrada,Tempo: horaSaida)
+    + getPrimeiroNome() : String
+    +getUltimoNome() : String
+    +getDataContrato() : Data
+    +getTempoEntrada() : Tempo
+    +getTempoSaida() : Tempo
+    +setPrimeiroNome(primeiroNome : String) : void
+    +setUltimoNome() : void
+    +setDataContrato() : void
+    +setTempoEntrada() : void
+    +setTempoSaida() : void
+    +equals()
+    +horasSemanais()
+    +tempoContrato()
+
+}
+
+class Data {
+}
+
+class Tempo{
+}
+
+
+@enduml
